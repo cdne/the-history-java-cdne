@@ -12,9 +12,7 @@ public class TheHistoryLinkedList implements TheHistory {
     public void add(String text) {
         //TODO: check the TheHistory interface for more information
         String[] words = text.trim().split("\\s+");
-        for(int i = 0; i < words.length;i++){
-            wordsLinkedList.add(words[i]);
-        }
+        Collections.addAll(wordsLinkedList, words);
     }
 
     @Override
@@ -52,12 +50,9 @@ public class TheHistoryLinkedList implements TheHistory {
         String from = String.join(" ", fromWords);
         String to = String.join(" ", toWords);
         String words = String.join(" ", wordsLinkedList);
-
-        words.replaceAll(from, to);
-
-        wordsLinkedList = Arrays.asList(words.split(" "));
-
-
+        words = words.replaceAll(from, to);
+        String[] strArray = words.split("\\s+");
+        wordsLinkedList = Arrays.asList(strArray);
     }
 
     @Override
