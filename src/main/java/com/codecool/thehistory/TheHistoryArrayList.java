@@ -1,9 +1,7 @@
 package com.codecool.thehistory;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ListIterator;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class TheHistoryArrayList implements TheHistory {
     /**
@@ -14,32 +12,62 @@ public class TheHistoryArrayList implements TheHistory {
     @Override
     public void add(String text) {
         //TODO: check the TheHistory interface for more information
+        String[] testWords = text.trim().split("\\s+");
+
+
+        for(int i = 0; i < testWords.length;i++){
+            wordsArrayList.add(testWords[i]);
+        }
+
     }
 
     @Override
     public void removeWord(String wordToBeRemoved) {
         //TODO: check the TheHistory interface for more information
+        wordsArrayList.removeAll(Collections.singleton(wordToBeRemoved));
+
+        System.out.println(wordsArrayList);
     }
 
     @Override
     public int size() {
         //TODO: check the TheHistory interface for more information
-        return 0;
+        return wordsArrayList.size();
     }
 
     @Override
     public void clear() {
         //TODO: check the TheHistory interface for more information
+        wordsArrayList.clear();
     }
 
     @Override
     public void replaceOneWord(String from, String to) {
         //TODO: check the TheHistory interface for more information
+        ListIterator<String> listIterator = wordsArrayList.listIterator();
+        while(listIterator.hasNext()){
+            if(listIterator.next().equals(from)){
+                listIterator.set(to);
+            }
+        }
     }
 
     @Override
     public void replaceMoreWords(String[] fromWords, String[] toWords) {
         //TODO: check the TheHistory interface for more information
+        String from = String.join(" ", fromWords);
+        String to = String.join(" ", toWords);
+        String words = String.join(" ", wordsArrayList);
+
+        words = words.replaceAll(from, to);
+        System.out.println(words);
+        String[] strArray = words.split("\\s+");
+        wordsArrayList.clear();
+
+        for(int i = 0; i < strArray.length;i++){
+            wordsArrayList.add(strArray[i]);
+        }
+
     }
 
     @Override
