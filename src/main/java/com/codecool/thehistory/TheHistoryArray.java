@@ -12,24 +12,9 @@ public class TheHistoryArray implements TheHistory {
     @Override
     public void add(String text) {
         //TODO: check the TheHistory interface for more information
-//        text = text.replaceAll("\\s+", " ");
-//        int currentSize = wordsArray.length;
-//        int newSize = currentSize + 1;
-//        String[] tempArray = new String[newSize];
-//
-//        for(int i = 0;i < currentSize;i++){
-//            System.out.println(wordsArray[i]);
-//            tempArray[i] = wordsArray[i];
-//        }
-//
-//        tempArray[currentSize] = text;
-//        wordsArray = tempArray;
-
         String words = text.replaceAll("\\s+", " ");
-        String[] wordsSplit = words.split(" ");
-
+        String[] wordsSplit = words.trim().split(" ");
         System.arraycopy(wordsArray, 0, wordsSplit, 0, wordsArray.length);
-
         wordsArray = wordsSplit;
 
 
