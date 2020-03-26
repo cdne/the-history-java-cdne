@@ -13,20 +13,14 @@ public class TheHistoryArrayList implements TheHistory {
     public void add(String text) {
         //TODO: check the TheHistory interface for more information
         String[] testWords = text.trim().split("\\s+");
-
-
-        for(int i = 0; i < testWords.length;i++){
-            wordsArrayList.add(testWords[i]);
-        }
+        Collections.addAll(wordsArrayList, testWords);
 
     }
 
     @Override
     public void removeWord(String wordToBeRemoved) {
         //TODO: check the TheHistory interface for more information
-        wordsArrayList.removeAll(Collections.singleton(wordToBeRemoved));
-
-        System.out.println(wordsArrayList);
+        wordsArrayList.removeAll(Collections.singletonList(wordToBeRemoved));
     }
 
     @Override
@@ -45,8 +39,8 @@ public class TheHistoryArrayList implements TheHistory {
     public void replaceOneWord(String from, String to) {
         //TODO: check the TheHistory interface for more information
         ListIterator<String> listIterator = wordsArrayList.listIterator();
-        while(listIterator.hasNext()){
-            if(listIterator.next().equals(from)){
+        while (listIterator.hasNext()) {
+            if (listIterator.next().equals(from)) {
                 listIterator.set(to);
             }
         }
@@ -58,16 +52,9 @@ public class TheHistoryArrayList implements TheHistory {
         String from = String.join(" ", fromWords);
         String to = String.join(" ", toWords);
         String words = String.join(" ", wordsArrayList);
-
         words = words.replaceAll(from, to);
-        System.out.println(words);
         String[] strArray = words.split("\\s+");
-        wordsArrayList.clear();
-
-        for(int i = 0; i < strArray.length;i++){
-            wordsArrayList.add(strArray[i]);
-        }
-
+        wordsArrayList = Arrays.asList(strArray);
     }
 
     @Override
